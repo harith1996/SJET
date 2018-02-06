@@ -1,0 +1,23 @@
+
+<?php
+session_start();
+include('navbar.php');
+include('db_sjet.php');
+echo "<div style='background-color:#FFF;padding:30px;height:400px;'>";
+			$sql="SELECT sco_name FROM SCHOLARSHIPS";
+			$result = mysqli_query($conn,$sql);
+			if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "<li><strong><a href='df' class='style3'>$row[sco_name]</a></strong></li>";
+    }
+} else {
+    echo "0 results";
+}
+					
+?>
+</div>
+
+
+
+

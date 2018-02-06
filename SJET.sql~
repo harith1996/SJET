@@ -1,0 +1,74 @@
+DROP DATABASE SJET;
+CREATE DATABASE SJET;
+
+USE SJET;
+
+CREATE TABLE ADMIN
+(
+admin_id varchar(20) NOT NULL,
+password varchar(60) NOT NULL,
+email varchar(50) CHECK (email LIKE '%@%.%'));
+
+CREATE TABLE TRUSTEE
+(
+trustee_id int NOT NULL AUTO_INCREMENT,
+name varchar(30) NOT NULL,
+position_trust varchar(30) NOT NULL,
+position_college varchar(200) NOT NULL,
+photo_path varchar(100),
+phone_num varchar(30) NOT NULL,
+email varchar(50) CHECK (email LIKE '%@%.%'),
+address varchar(200),
+webpage varchar(200),
+PRIMARY KEY(trustee_id)
+);
+CREATE TABLE DOCUMENTS
+(
+doc_id int NOT NULL AUTO_INCREMENT,
+doc_type varchar(45),
+doc_name varchar(45),
+doc_path varchar(100),
+description varchar(45),
+year int,
+PRIMARY KEY (doc_id)
+);
+CREATE TABLE SCHOLARSHIPS
+(
+sco_id int NOT NULL AUTO_INCREMENT,
+sco_name varchar(200),
+sco_doc_name varchar(45),
+sco_doc_path varchar(100),
+position int,
+PRIMARY KEY(sco_id));
+
+CREATE TABLE NEWS
+(
+news_id int NOT NULL AUTO_INCREMENT,
+news_doc_name varchar(45),
+description varchar(45),
+news_doc_path varchar(100),
+PRIMARY KEY (news_id));
+
+CREATE TABLE DONATORS
+(
+donator_id int NOT NULL AUTO_INCREMENT,
+donator_name varchar(30),
+donator_email varchar(45),
+donator_mobile varchar(45),
+donator_amount int(10),
+donator_year int(5),
+donator_photo_path varchar(100),
+current_position varchar(100),
+other_info varchar(100),
+PRIMARY KEY(donator_id));
+
+create table APPLICATION (ready int);
+
+CREATE TABLE FAQ
+(
+faq_id int NOT NULL AUTO_INCREMENT,
+faq_que varchar(1000),
+faq_ans varchar(1000),
+PRIMARY KEY (faq_id));
+
+insert into ADMIN values ('sjet','$2y$10$KCxCYpiXhsns/Zzrhabg6.QDUM56eTimLtrDf0K.uptUcUFW9vuoq','webmaster@nitc.ac.in');
