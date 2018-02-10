@@ -57,25 +57,25 @@
     </div>
   </form>
     <?php
-include ("db_sjet.php");
-if(isset($_POST[login_submit]))
-	{
-    $user=$_POST[username]; 
-		$pass=$_POST[password];
-		$sql="SELECT * FROM admin WHERE admin_id='admin'";
-        $result=mysqli_query($conn,$sql);
-		$count=mysqli_num_rows($result);
-		$row=mysqli_fetch_assoc($result);
-    if('admin'==$pass)
-		{
-			header("Location: login.php");
-			exit();
-		}
+include("db_sjet.php");
+if(isset($_POST['login_submit']))
+{
+    $user=$_POST['username'];
+    $pass=$_POST['password'];
+    $sql="SELECT * FROM admin WHERE admin_id='".$user."'";
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result);
+    $DBpass = $row['password'];
+    if($DBpass==$pass)
+    {
+        header("Location: login.php");
+        exit();
+    }
 		else
-        {
-	  			echo("<script type='text/javascript'> alert('Invalid Username/Password'); </script>");		
-		}
-	}
+    {
+            echo("<script type='text/javascript'> alert('Invalid username or password'); </script>");		
+    }
+}
     else {echo "sup";}
 ?>
 
