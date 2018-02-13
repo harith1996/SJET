@@ -49,7 +49,7 @@ echo '<input style="background:red;padding:5px;" type="submit" name="appl_btn" v
 			</form>
 <ul>
          
-<?php   echo exec('whoami'); 
+<?php   
 		if(isset($_POST["delete"])){
 		unlink($_POST["doc_path_remove"]);
 		$sql = "DELETE from NEWS where news_id = '$_POST[doc_id]'";
