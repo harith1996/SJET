@@ -39,17 +39,15 @@ include("navbar2.php");
 		$address = $_POST["address"];
 		$target_dir = "uploads/images/";
 		$uploadOk = 1;
-        $fi = new FilesystemIterator($target_dir, FilesystemIterator::SKIP_DOTS);
         if(basename($_FILES["fileToUpload"]["name"])==''){$target_file = $target_dir . 'profile_pic.jpg';}
 		else{
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-		
-          $fi = new FilesystemIterator($target_dir, FilesystemIterator::SKIP_DOTS);
-		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-		// Check if file already exists
+		$fi = new FilesystemIterator($target_dir, FilesystemIterator::SKIP_DOTS);
+		$path_parts = pathinfo($target_file);
+				// Check if file already exists
 		if (file_exists($target_file)) {
-            $target_file = $path_parts['dirname']. "/" . $path_parts['filename'] . iterator_count($fi) . "." . $path_parts['extension'];
-		    
+	       $num= iterator_count($fi);
+    		$target_file = $path_parts['dirname']. "/" . $path_parts['filename'] . $num . "." . $path_parts['extension'];
 		    $uploadOk = 1;
 		}
 		// Check if $uploadOk is set to 0 by an error

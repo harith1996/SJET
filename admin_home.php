@@ -49,7 +49,7 @@ echo '<input style="background:red;padding:5px;" type="submit" name="appl_btn" v
 			</form>
 <ul>
          
-<?php    
+<?php   echo exec('whoami'); 
 		if(isset($_POST["delete"])){
 		unlink($_POST["doc_path_remove"]);
 		$sql = "DELETE from NEWS where news_id = '$_POST[doc_id]'";
@@ -63,11 +63,13 @@ echo '<input style="background:red;padding:5px;" type="submit" name="appl_btn" v
 				$target_dir = "uploads/news/";
 				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 				$uploadOk = 1;
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+				$fi = new FilesystemIterator($target_dir, FilesystemIterator::SKIP_DOTS);
+				$path_parts = pathinfo($target_file);
 				// Check if file already exists
 				if (file_exists($target_file)) {
-				    echo "Sorry, file already exists.<br>";
-				    $uploadOk = 0;
+			       $num= iterator_count($fi);
+            		$target_file = $path_parts['dirname']. "/" . $path_parts['filename'] . $num . "." . $path_parts['extension'];
+				    $uploadOk = 1;
 				}
 				// Check if $uploadOk is set to 0 by an error
 				if ($uploadOk == 0) {

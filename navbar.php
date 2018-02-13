@@ -62,7 +62,7 @@ if(isset($_POST['login_submit']))
 {
     $user=$_POST['username'];
     $pass=$_POST['password'];
-    $sql="SELECT * FROM admin WHERE admin_id='".$user."'";
+    $sql="SELECT * FROM ADMIN WHERE admin_id='".$user."'";
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_assoc($result);
     $DBpass = $row['password'];
